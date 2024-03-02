@@ -16,7 +16,10 @@ const uploadMiddleware = multer({ dest : 'uploads/'})
 app.use(cors({credentials:true, origin: 'http://localhost:3000'}));
 app.use(express.json());
 app.use(cookieParser());
+<<<<<<< HEAD
 app.use('/uploads' , express.static(__dirname + '/uploads'))
+=======
+>>>>>>> 2161fd87719c8d3b13e984605143bf9265e55ddd
 
 app.post("/register", async (req, res) => {
   try {
@@ -67,6 +70,7 @@ app.get('/profile', (req, res) => {
     res.json(info);
   });
 });
+<<<<<<< HEAD
 
 app.post('/logout', (req,res) => {
   res.cookie('token', '').json('ok')
@@ -187,7 +191,36 @@ app.put('/post/:id', uploadMiddleware.single('file'), async (req, res) => {
 
 
 
+=======
+>>>>>>> 2161fd87719c8d3b13e984605143bf9265e55ddd
 
+app.post('/logout', (req,res) => {
+  res.cookie('token', '').json('ok')
+});
+
+app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
+  const { title, summary, content } = req.body; // Extract title, summary, and content from request body
+  const { path: filePath, originalname: originalName } = req.file; // Extract file path and original name from uploaded file
+  
+  // Here you can handle the renaming of the file and any other necessary processing
+  const newPath = 'path_to_new_file'; // Replace this with your file handling logic to get the new path
+  
+  try {
+    const postDoc = await Post.create({
+      title,
+      summary,
+      content,
+      cover: newPath, // Assuming this is the path to the uploaded file or any processed file
+    });
+    
+    res.json(postDoc);
+  } catch (error) {
+    console.error("Error creating post:", error);
+    res.status(500).json({ error: "Failed to create post" });
+  }
+});
+
+ 
 mongoose
   .connect(
     "mongodb+srv://maarouf:barcabarcaa123@cluster0.dt0qwfi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0" ,
