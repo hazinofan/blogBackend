@@ -16,10 +16,8 @@ const uploadMiddleware = multer({ dest : 'uploads/'})
 app.use(cors({credentials:true, origin: 'http://localhost:3000'}));
 app.use(express.json());
 app.use(cookieParser());
-<<<<<<< HEAD
 app.use('/uploads' , express.static(__dirname + '/uploads'))
-=======
->>>>>>> 2161fd87719c8d3b13e984605143bf9265e55ddd
+
 
 app.post("/register", async (req, res) => {
   try {
@@ -70,7 +68,6 @@ app.get('/profile', (req, res) => {
     res.json(info);
   });
 });
-<<<<<<< HEAD
 
 app.post('/logout', (req,res) => {
   res.cookie('token', '').json('ok')
@@ -191,8 +188,7 @@ app.put('/post/:id', uploadMiddleware.single('file'), async (req, res) => {
 
 
 
-=======
->>>>>>> 2161fd87719c8d3b13e984605143bf9265e55ddd
+
 
 app.post('/logout', (req,res) => {
   res.cookie('token', '').json('ok')
