@@ -79,7 +79,7 @@ app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
   
   // Verify the JWT token
   jwt.verify(token, secret, {}, async (err, info) => {
-    if (err) {
+    if (err) {  
       return res.status(401).json({ error: 'Unauthorized' });
     }
 
