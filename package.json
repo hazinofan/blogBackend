@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "node Api.js"
+    "start": "npx nodemon Api.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
